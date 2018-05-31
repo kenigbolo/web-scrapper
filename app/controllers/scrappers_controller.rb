@@ -1,0 +1,2 @@
+class ScrappersController < ApplicationController
+end

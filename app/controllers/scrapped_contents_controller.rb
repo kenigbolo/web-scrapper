@@ -1,0 +1,2 @@
+class ScrappedContentsController < ApplicationController
+end
