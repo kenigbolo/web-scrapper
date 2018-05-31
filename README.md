@@ -8,6 +8,7 @@ This is a basic ruby on rails web scrapper used to retrieve webpage content from
 
 + Clone the repo:
 `clone git@github.com:kenigbolo/web-scrapper.git` for SSH
++ Clone the repo:
 `git clone https://github.com/kenigbolo/web-scrapper.git` for HTTPS
 
 ## Dependencies
@@ -15,14 +16,13 @@ This is a basic ruby on rails web scrapper used to retrieve webpage content from
 * Ruby version 2.5.1 and above
 * Rails 5.0.0
 
-Once you have those two, you can then go to your command line and navigate into the project's folder then run the following:
+Once you have those two, navigate into the project's root folder and do the following:
 
 * Run `bundle install` to install all other dependencies
 
 
-    ***Note*** some gems might cause issues while installing, so for unix/linux users try `sudo gem install <gem_name>`
+    ***Note*** some gems may or may not cause issues while installing, so for unix/linux users try `sudo gem install <gem_name>`
 * Run `rails db:migrate` or `rake db:migrate`
-* Run `rails db:seed`  or `rake db:seed` to seed the `db` if neccessary.
 
 (*the `rake` command was used for rails version prior rails 5. But it is no logner required*)
 
@@ -30,7 +30,34 @@ Once you have those two, you can then go to your command line and navigate into 
 
 You can run `rails s` or `rails server` and visit the page on the browser by typing `localhost:3000`. (*you can add the flag `-p <port_number>` to specify a different port number, e.i. `rails s -p 8000`*)
 
-##Running The Specs
+## Scrapping Content
+
+To begin scrapping content using curl kindly when server is running, initiate a curl request e.g.
+
+```bash
+curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{"data": {"type":"scrappers", "attributes":{"web-url":"https://bcaster.com/"}}}' http://localhost:3000/scrappers
+```
+Making the request via POSTMAN requires the will require the following settings
+
+```bash
+Set Content-Type to `application/vnd.api+json`
+Set Body(set to raw text) to '{"data": {"type":"scrappers", "attributes":{"web-url":"https://bcaster.com/"}}}'
+Make `POST` request to `http://localhost:3000/scrappers`
+```
+
+## Viewing Scrapped Content
+
+To view scrapped content using curl, run the following cmd
+```bash
+  curl -i -H "Accept: application/vnd.api+json" "http://localhost:3000/scrappers?include=scrapped-contents&fields%5Bscrappers%5D=web-url&fields%5Bscrapped-content%5D=tag,value"
+```
+Or via POSTMAN by simply doing the following
+```bash
+Set Content-Type to application/vnd.api+json
+Make 'GET' request to 'http://localhost:3000/scrappers?include=scrapped-contents&fields%5Bscrappers%5D=web-url&fields%5Bscrapped-content%5D=tag,value"'
+```
+
+## Running The Specs
 After all the setting up as mentioned above, you can run the tests. The tests are driven by rspec. You can get them fired up by running the following command from the terminal.
 
   `rspec spec`
@@ -48,7 +75,7 @@ or
 ## API Routes
 
 ```ruby
-Prefix Verb   URI Pattern                  Controller#Action
+Prefix Verb             URI Pattern                               Controller#Action
 scrappers               GET    /scrappers(.:format)               scrappers#index
                         POST   /scrappers(.:format)               scrappers#create
 scrapper                GET    /scrappers/:id(.:format)           scrappers#show
