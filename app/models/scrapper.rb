@@ -3,15 +3,17 @@ class Scrapper < ApplicationRecord
   has_many :scrapped_contents
 
   ### Validations
+  validates_with UniqueScrapperValidator
   validates :web_url, presence: true
 
   after_save :scrape_content
 
-  private
   def scrape_content
     page_contents = Nokogiri::HTML(open(web_url))
     save_content(page_contents)
   end
+
+  private
 
   def save_content(page_contents)
     %w(h1 h2 h3 a).each do |html_tag|
