@@ -60,7 +60,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.5.3)
       concurrent-ruby (~> 1.0)
-    jsonapi-resources (0.9.0)
+    jsonapi-resources (0.9.5)
       activerecord (>= 4.1)
       concurrent-ruby
       railties (>= 4.1)
