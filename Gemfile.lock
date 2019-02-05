@@ -53,7 +53,7 @@ GEM
     erubi (1.8.0)
     factory_bot (5.0.0)
       activesupport (>= 4.2.0)
-    faker (1.8.7)
+    faker (1.9.1)
       i18n (>= 0.7)
     ffi (1.10.0)
     globalid (0.4.2)
