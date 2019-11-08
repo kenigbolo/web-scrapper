@@ -96,7 +96,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
-    puma (4.2.1)
+    puma (4.3.0)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -179,7 +179,7 @@ DEPENDENCIES
   faker
   jsonapi-resources
   listen (>= 3.0.5, < 3.3)
-  puma (~> 4.2)
+  puma (~> 4.3)
   rails (~> 6.0.1)
   rspec-rails (>= 3.5.0)
   spring
